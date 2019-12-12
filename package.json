@@ -1,0 +1,41 @@
+{
+  "name": "djangostars",
+  "version": "1.0.0",
+  "description": "DjangoStars front-end javascript libraries",
+  "keywords": [
+    "DjangoStars"
+  ],
+  "author": "DjangoStars <info@djangostars.com> (https://github.com/django-stars/)",
+  "contributors": [
+    "Alexander Gulchenko <aleksandr.gulchenko@gmail.com>"
+  ],
+  "bugs": "https://github.com/django-stars/ds-frontend/issues",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-function-sent": "^7.2.0",
+    "@babel/plugin-proposal-json-strings": "^7.2.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-react-require": "^3.1.1",
+    "eslint": "^6.2.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}
