@@ -1,7 +1,12 @@
 {
-  "name": "djangostars",
+  "name": "ds-frontend",
   "version": "1.0.0",
   "description": "DjangoStars front-end javascript libraries",
+  "scripts": {
+    "eslint": "node linter --verbose | snazzy",
+    "eslint:fix": "node linter --fix --verbose | snazzy",
+    "test": "jest --config jest.conf.json -u"
+  },
   "keywords": [
     "DjangoStars"
   ],
@@ -37,5 +42,19 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-standard": "^4.0.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.5"
+  },
+  "dependencies": {
+    "final-form": "^4.18.7",
+    "lodash": "^4.17.15",
+    "path-to-regexp": "^6.1.0",
+    "react-final-form": "^6.3.5",
+    "redux-form": "^8.3.0",
+    "reselect": "^4.0.0"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "@ds-frontend/i18n",
+  "version": "1.0.0",
+  "description": "React lightweight simple translation module",
+  "keywords": [
+    "i18n",
+    "translates"
+  ],
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}

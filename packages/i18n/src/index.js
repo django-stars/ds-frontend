@@ -28,6 +28,16 @@ const defaultProps = {
   reload: noop,
 }
 
+export const TranslationPropTypes = {
+  translations: PropTypes.object.isRequired,
+  gettext: PropTypes.func.isRequired,
+  pgettext: PropTypes.func.isRequired,
+  ngettext: PropTypes.func.isRequired,
+  npgettext: PropTypes.func.isRequired,
+  setLanguage: PropTypes.func.isRequired,
+  language: PropTypes.string.isRequired,
+}
+
 export class TranslateProvider extends React.Component {
   constructor(props) {
     super(props)

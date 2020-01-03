@@ -1,0 +1,16 @@
+{
+  "name": "@ds-frontend/queryParams",
+  "version": "1.0.0",
+  "description": "Module to build and parse url query string",
+  "keywords": [
+    "http",
+    "query params"
+  ],
+  "author": "DjangoStars <info@djangostars.com> (https://github.com/django-stars/)",
+  "contributors": [
+    "Alexander Gulchenko <aleksandr.gulchenko@gmail.com>"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
