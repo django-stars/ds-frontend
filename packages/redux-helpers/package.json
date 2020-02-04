@@ -1,0 +1,16 @@
+{
+  "name": "@ds-frontend/redux-helpers",
+  "version": "1.0.0",
+  "description": "redux redux helpers",
+  "keywords": [
+    "redux",
+    "middleware"
+  ],
+  "author": "DjangoStars <info@djangostars.com> (https://github.com/django-stars/)",
+  "contributors": [
+    "Alexander Gulchenko <aleksandr.gulchenko@gmail.com>"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}

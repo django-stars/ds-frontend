@@ -1,0 +1,28 @@
+{
+  "name": "@ds-frontend/resource",
+  "version": "1.0.0",
+  "description": "redux HOC for sending HTTP requests",
+  "keywords": [
+    "react",
+    "redux",
+    "REST",
+    "HTTP"
+  ],
+  "author": "DjangoStars <info@djangostars.com> (https://github.com/django-stars/)",
+  "contributors": [
+    "Alexander Gulchenko <aleksandr.gulchenko@gmail.com>"
+  ],
+  "dependencies": {
+    "final-form": "^4.18.7",
+    "lodash": "^4.17.15",
+    "path-to-regexp": "^6.1.0",
+    "prop-types": "^15.7.2",
+    "react-final-form": "^6.3.5",
+    "redux-form": "^8.3.0",
+    "reselect": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-redux": "^7.1.3"
+  }
+}
