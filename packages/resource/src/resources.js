@@ -130,9 +130,9 @@ function makeRequest(httpRequest) {
         dispatch(setResourceData({
           isLoading: true,
           errors: {},
-          filters: pick(payload, queries || []),
         }, meta))
-      } else if(!isEmpty(queries)) {
+      }
+      if(!isEmpty(queries) && type === 'GET') {
         dispatch(setResourceData({
           filters: pick(payload, queries || []),
         }, meta))
