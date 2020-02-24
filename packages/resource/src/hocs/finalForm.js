@@ -19,7 +19,6 @@ export default function withFinalForm({
   if(!key && !configs.onSubmit) {
     throw new Error('OnSubmit is required')
   }
-  let getfields = function() { return [] }
   return function HOC(ChildComponent) {
     return class FinalFormHOC extends Component {
       constructor(props) {
@@ -75,11 +74,7 @@ export default function withFinalForm({
       }
 
       handleValidate(values) {
-        const validationErrors = validate(values, this.props)
-        if(typeof validationErrors === 'object') {
-          return pick(validationErrors, getfields())
-        }
-        return validationErrors
+        return validate(values, this.props)
       }
 
       render() {
@@ -90,7 +85,6 @@ export default function withFinalForm({
             validate={this.handleValidate}
             initialValues={this.initialValues}
             render={({ handleSubmit, form, submitting, ...rest }) => {
-              getfields = form.getRegisteredFields
               return (
                 <ChildComponent
                   {...this.props}
