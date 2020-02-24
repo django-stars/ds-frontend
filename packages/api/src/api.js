@@ -30,7 +30,7 @@ export default class API {
 
     const fetchParams = Object.assign({}, restOptions || {}, omit(this.options, Object.keys(defaultConfigs)))
 
-    let _body = method === 'GET' ? undefined : this.options.prepareBody(Object.assign({}, body), _isMultipartFormData)
+    let _body = method === 'GET' ? undefined : this.options.prepareBody(body, _isMultipartFormData)
     const options = {
       method,
       headers: _headers,
