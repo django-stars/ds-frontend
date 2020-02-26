@@ -97,7 +97,7 @@ function getMetaFromResource(resource) {
   }
   return {
     reducer: 'object',
-    ...resource,
+    ...omit(resource, 'queries'),
     endpoint: resource.endpoint || resource.namespace,
     namespace: getNameSpace(resource.namespace),
   }
@@ -132,9 +132,9 @@ function makeRequest(httpRequest) {
           errors: {},
         }, meta))
       }
-      if(!isEmpty(queries) && type === 'GET') {
+      if(!isEmpty(queries)) {
         dispatch(setResourceData({
-          filters: pick(payload, queries || []),
+          filters: pick(payload, queries),
         }, meta))
       }
       const controller = new AbortController()
@@ -178,7 +178,7 @@ export function makeResourceActions(resource, dispatch) {
   const meta = getMetaFromResource(resource)
   const actions = {
     create: makeRequestAction('POST', meta, dispatch),
-    fetch: makeRequestAction('GET', meta, dispatch),
+    fetch: makeRequestAction('GET', { ...meta, queries: resource.queries }, dispatch),
     update: makeRequestAction('PATCH', meta, dispatch),
     remove: makeRequestAction('DELETE', meta, dispatch),
     replace: makeRequestAction('PUT', meta, dispatch),
