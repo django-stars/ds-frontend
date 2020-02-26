@@ -152,6 +152,7 @@ By default resources will trigger all circle methods
 #### `queries : Object` [optional] [default: {}]
 
 used with list resources. representing initial query for fetch request.
+* By default it will skip queries for all API requests except GET 
 
 #### `reducer : String|Function` [optional] [default: 'object'}]
 one of possible reducer functions that u can use.
@@ -245,7 +246,7 @@ export default customConnect('test')(Test)
 customConnect([{...}, 'test'])(Test)
 ```
 
-customConnect HOC will not support array of resources because it is single resource HOC 
+customConnect HOC will not support array of resources because it is single resource HOC
 
 
 # HOCS
