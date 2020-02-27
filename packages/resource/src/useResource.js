@@ -20,7 +20,10 @@ function makeResourceSelector(config) {
 }
 
 
-export default function useResources(config) {
+export default function useResource(config) {
+  if(Array.isArray(config)) {
+    throw new Error('useResource hook can accept only one resource config')
+  }
   const selectResource = useCallback(makeResourceSelector(config), [config])
   const resource = useSelector(selectResource)
   const dispatch = useDispatch()
