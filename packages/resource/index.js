@@ -1,5 +1,5 @@
 import ResourceType from './src/ResourceType'
-import useResources from './src/useResources'
+import useResource from './src/useResource'
 
 import connectResources, {
   resourcesReducer,
@@ -11,7 +11,7 @@ export * from './src/hocs'
 
 export {
   connectResources,
-  useResources,
+  useResource,
   resourcesReducer,
   ResourceType,
   customResource,
