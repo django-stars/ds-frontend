@@ -1,4 +1,3 @@
-import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { compile } from 'path-to-regexp'
 
@@ -81,7 +80,7 @@ function mapStateToProps(resources) {
       const key = getNameSpaceFromResource(resource)
       return {
         ...res,
-        [key]: { ...props[key], ...get(state, key, {}) },
+        [key]: get(state, key, {}),
       }
     }, {})
   }
@@ -204,10 +203,26 @@ function mapDispatchToProps(resources, dispatch) {
   }), {})
 }
 
-export default function connectResources(resource) {
-  return compose(
-    connect(null, dispatch => mapDispatchToProps(resource, dispatch)),
-    connect(mapStateToProps(resource)),
+
+function mergeProps(stateProps, dispatchProps, ownProps) {
+  const mergeProps = Object.entries(stateProps).reduce((acc, [key, value]) => {
+    return {
+      ...acc,
+      [key]: {
+        ...value,
+        ...dispatchProps[key],
+      },
+    }
+  }, {})
+  return { ...ownProps, ...mergeProps }
+}
+
+export default function connectResources(resource, context) {
+  return connect(
+    mapStateToProps(resource),
+    dispatch => mapDispatchToProps(resource, dispatch),
+    mergeProps,
+    { context }
   )
 }
 
@@ -295,7 +310,7 @@ export function resourcesReducer(state = {}, action) {
 }
 
 
-export function customResource(customFetch) {
+export function customResource(customFetch, context) {
   return function customResourceFetch(resource) {
     if(Array.isArray(resource)) {
       throw new Error('custom resource config can not be an array')
@@ -311,16 +326,18 @@ export function customResource(customFetch) {
       resource.endpoint = resource.namespace
     }
     const { namespace, endpoint, queries } = resource
-    const customeResourceConnectHOC = compose(
-      connect(null, dispatch => ({
+    const customeResourceConnectHOC = connect(
+      mapStateToProps(resource),
+      dispatch => ({
         [namespace]: {
           ...mapDispatchToProps(resource, dispatch)[namespace],
           customRequest: function(payload, actionmeta) {
             return dispatch(makeRequest(customFetch)(payload, { ...resource, ...actionmeta }))
           },
         },
-      })),
-      connect(mapStateToProps(resource)),
+      }),
+      mergeProps,
+      { context }
     )
     customeResourceConnectHOC.namespace = namespace
     customeResourceConnectHOC.endpoint = endpoint
