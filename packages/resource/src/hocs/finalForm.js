@@ -131,7 +131,7 @@ function getIdKey(props, { key, resource, configs } = {}) {
   }
   let idKey = (parse(resource.endpoint || '') || [])
     .filter(item => typeof item !== 'string')
-    .filter(({ optional }) => optional)
+    .filter(({ modifier }) => modifier === '?')
     .pop()
   if(isEmpty(idKey)) {
     return false
