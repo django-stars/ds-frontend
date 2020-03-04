@@ -62,7 +62,7 @@ export default class API {
         if(get(err, 'code') === 20) {
           return Promise.reject({ errors: { code: err.code, message: err.message, name: err.name } })
         }
-        return Promise.reject(this.interceptors.response.err(err))
+        return this.interceptors.response.err(err).then(err => { throw err })
       })
   }
   get(endpoint, params = {}) {
