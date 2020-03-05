@@ -7,14 +7,14 @@ import has from 'lodash/has'
 import pick from 'lodash/pick'
 import noop from 'lodash/noop'
 import debounce from 'lodash/debounce'
-import { Fragment, mergeConfigs, makePromiseSubscription, getNameSpace } from '../utils'
+import { Loader, mergeConfigs, makePromiseSubscription, getNameSpace } from '../utils'
 
 
 const defaultConfigs = {
   prefetch: true,
   destroyOnUnmount: true,
   refresh: true,
-  Loader: Fragment,
+  Loader,
   defaultParams: {
     limit: 20,
   },

@@ -6,14 +6,14 @@ import get from 'lodash/get'
 import pick from 'lodash/pick'
 import has from 'lodash/has'
 import noop from 'lodash/noop'
-import { mergeConfigs, makePromiseSubscription, Fragment, getNameSpace } from '../utils'
+import { mergeConfigs, makePromiseSubscription, Loader, getNameSpace } from '../utils'
 
 
 const defaultConfigs = {
   destroyOnUnmount: true,
   refresh: true,
   defaultParams: {},
-  Loader: Fragment,
+  Loader,
 }
 
 

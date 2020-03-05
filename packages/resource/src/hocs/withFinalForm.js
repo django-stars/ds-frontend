@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import connectResources from '../resources'
 import prefetchResources from './prefetchResources'
 import get from 'lodash/get'
-import { mergeConfigs, getNameSpace, Fragment } from '../utils'
+import { mergeConfigs, getNameSpace, Loader } from '../utils'
 
 
 const defaultConfigs = {
@@ -11,7 +11,7 @@ const defaultConfigs = {
   destroyOnUnmount: true,
   refresh: false,
   defaultParams: {},
-  Loader: Fragment,
+  Loader,
 }
 export default function(form = {}, resource, configs) {
   if(Array.isArray(resource)) {

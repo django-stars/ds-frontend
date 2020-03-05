@@ -31,4 +31,4 @@ export function getNameSpace(namespace) {
   return namespace.split('/').shift()
 }
 
-export function Fragment({ children }) { return children }
+export function Loader({ children, isLoading }) { return isLoading ? null : children }
