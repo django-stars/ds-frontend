@@ -8,12 +8,6 @@ export function makePromiseSubscription(subscriptions) {
   }
   let isCanceled = false
   const wrappedPromise = Promise.all(subscriptions)
-    .catch(() => {
-      if(isCanceled) {
-        throw new Error('Promise cancelled')
-      }
-      return isCanceled
-    })
     .then(() => {
       if(isCanceled) {
         throw new Error('Promise cancelled')
