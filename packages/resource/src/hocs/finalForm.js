@@ -12,7 +12,7 @@ export default function withFinalForm({
   validate = () => {},
   onSubmitSuccess,
   onSubmitFailed,
-  valuesInteceptor,
+  valuesInterceptor,
   ...configs
 }, config) {
   const key = get(config, 'key')
@@ -41,7 +41,7 @@ export default function withFinalForm({
       handleSubmit(values, form) {
         const registeredFields = form.getRegisteredFields()
         const idKey = getIdKey(this.props, config)
-        const apiData = { ...getData(values, this.props, form, valuesInteceptor, registeredFields), ...(idKey || {}) }
+        const apiData = { ...getData(values, this.props, form, valuesInterceptor, registeredFields), ...(idKey || {}) }
         const submitAction = get(this.props[key], 'customRequest') || isEmpty(idKey) ? get(this.props[key], 'create') : get(this.props[key], 'update')
         return Promise.resolve(configs.onSubmit ? configs.onSubmit(apiData, form, this.props) : submitAction(apiData, { forceUpdates: true }))
           .then(data => {
@@ -101,9 +101,9 @@ export default function withFinalForm({
   }
 }
 
-function getData(values, props, form, valuesInteceptor, registeredFields) {
-  if(typeof valuesInteceptor === 'function') {
-    return valuesInteceptor(pick(values, registeredFields), props, form)
+function getData(values, props, form, valuesInterceptor, registeredFields) {
+  if(typeof valuesInterceptor === 'function') {
+    return valuesInterceptor(pick(values, registeredFields), props, form)
   }
   return pick(values, registeredFields)
 }
