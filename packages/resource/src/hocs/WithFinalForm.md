@@ -6,7 +6,7 @@ react-final-form configs
 - `validate: function(values, props):Object|Promise` => with react final form u can use  validate function  for sunc and async validation. 
 - `onSubmitSuccess: function(apiResults, props)` => callback functoin on Submit success
 - `onSubmitFailed: function(apiError, props)` => callback functoin on Submit fails
-- `valuesInteceptor: function(values, props, form)` => functoin interceptor to convert form data before submit
+- `valuesInterceptor: function(values, props, form)` => functoin interceptor to convert form data before submit
 - `initialValues: Object|function(props)` => same as redux-form initialValues but it could be a function where u can modify initialValues from props. Or U can specify initialValues as static values.
 in case nothing was specified and prefetch true it will pass resource data by default as initial values
 ... rest configurations from react-final-form
