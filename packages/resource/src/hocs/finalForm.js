@@ -6,6 +6,7 @@ import pick from 'lodash/pick'
 import omit from 'lodash/omit'
 import get from 'lodash/get'
 import isEmpty from 'lodash/isEmpty'
+import { parseIdKey } from '../utils'
 
 
 export default function withFinalForm({
@@ -126,17 +127,10 @@ function getIdKey(props, { key, resource, configs } = {}) {
   if(!key) {
     return false
   }
-  if(!get(resource, 'endpoint')) {
+  let idKey = parseIdKey(resource.endpoint)
+  if(!idKey) {
     return false
   }
-  let idKey = (parse(resource.endpoint || '') || [])
-    .filter(item => typeof item !== 'string')
-    .filter(({ modifier }) => modifier === '?')
-    .pop()
-  if(isEmpty(idKey)) {
-    return false
-  }
-  idKey = get(idKey, 'name')
   if(get(props, idKey)) {
     return { [idKey]: get(props, idKey) }
   }

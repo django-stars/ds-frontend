@@ -1,3 +1,5 @@
+import { parse } from 'path-to-regexp'
+
 export function mergeConfigs(a, b) {
   return Object.assign({}, a || {}, b || {})
 }
@@ -26,3 +28,14 @@ export function getNameSpace(namespace) {
 }
 
 export function Loader({ children, isLoading }) { return isLoading ? null : children }
+
+export function parseIdKey(endpoint) {
+  if(!endpoint || typeof endpoint !== 'string') {
+    return false
+  }
+  return (parse(endpoint) || [])
+    .filter(item => typeof item !== 'string')
+    .filter(({ modifier }) => modifier === '?')
+    .pop()
+    .name
+}

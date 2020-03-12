@@ -37,7 +37,9 @@ export function prefetch(resources, configs) {
         this.getResources = this.getResources.bind(this)
         const initialLoading = configs.refresh || this.getResources()
           .findIndex(({ resource }) => !has(resource, 'data') && !has(resource, 'errors')) !== -1
-        this.state = { initialLoading }
+        this.state = {
+          initialLoading: configs.idKey ? !!props[configs.idKey] : initialLoading,
+        }
       }
 
       getResources() {
