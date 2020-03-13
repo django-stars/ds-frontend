@@ -1,7 +1,7 @@
 import { parse, compile } from 'path-to-regexp'
 import isEmpty from 'lodash/isEmpty'
 import has from 'lodash/has'
-import omit from 'lodash/omit'
+import pick from 'lodash/pick'
 import isPlainObject from 'lodash/isPlainObject'
 import uniq from 'lodash/uniq'
 import { QueryParams } from '@ds-frontend/queryParams'
@@ -9,12 +9,13 @@ import flatMapDeep from 'lodash/flatMapDeep'
 const QS = new QueryParams()
 
 export function clearParams(endpoint, params) {
-  let keys = parse(endpoint) || []
+  let keys = (parse(endpoint) || [])
+    .map(({ name }) => name)
+    .filter(Boolean)
   if(isEmpty(keys)) {
     return params
   }
-  keys = keys.map(({ name }) => name)
-  return omit(params, keys)
+  return pick(params, keys)
 }
 
 export function buildUrl(baseURL, endpoint, params, paramsSerializer = QS.buildQueryParams) {
