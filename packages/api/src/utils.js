@@ -27,8 +27,8 @@ export function buildUrl(baseURL, endpoint, params, paramsSerializer = QS.buildQ
   }
 
   if(/\/:/.test(endpoint)) {
-    params = clearParams(endpoint, params)
     endpoint = compile(endpoint)(params)
+    params = clearParams(endpoint, params)
   }
   const queryParams = isEmpty(params) ? '' : `?${paramsSerializer(params)}`
   return `${baseURL}${endpoint}/${queryParams}`
