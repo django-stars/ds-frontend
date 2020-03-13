@@ -26,12 +26,14 @@ export function buildUrl(baseURL, endpoint, params, paramsSerializer = QS.buildQ
     throw new Error('params should be an object')
   }
 
+  let _endpoint = endpoint
   if(/\/:/.test(endpoint)) {
-    endpoint = compile(endpoint)(params)
+    _endpoint = compile(endpoint)(params)
     params = clearParams(endpoint, params)
   }
+
   const queryParams = isEmpty(params) ? '' : `?${paramsSerializer(params)}`
-  return `${baseURL}${endpoint}/${queryParams}`
+  return `${baseURL}${_endpoint}/${queryParams}`
 }
 
 
