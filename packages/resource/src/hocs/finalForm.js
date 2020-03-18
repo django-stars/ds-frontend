@@ -84,16 +84,12 @@ export default function withFinalForm({
             onSubmit={this.handleSubmit}
             validate={this.handleValidate}
             initialValues={this.initialValues}
-            render={({ handleSubmit, form, submitting, ...rest }) => {
-              return (
-                <ChildComponent
-                  {...this.props}
-                  handleSubmit={handleSubmit}
-                  valid={isFormValid(rest) }
-                  submitting={submitting}
-                />
-              )
-            }}
+            render={formProps => (
+              <ChildComponent
+                {...formProps}
+                {...this.props}
+              />
+            )}
           />
         )
       }
