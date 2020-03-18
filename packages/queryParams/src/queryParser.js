@@ -35,7 +35,7 @@ export default class QS {
         if(has(params, name)) {
           return {
             ...params,
-            name: [].concat(params[name], value),
+            [name]: [].concat(params[name], value),
           }
         }
         return {
