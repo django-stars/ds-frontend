@@ -91,6 +91,7 @@ export default function withFinalForm({
               <ChildComponent
                 {...formProps}
                 {...this.props}
+                valid={isFormValid(formProps) }
               />
             )}
           />
