@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import connectResources from '../resources'
 import prefetchResources from './prefetchResources'
 import get from 'lodash/get'
-import { mergeConfigs, getNameSpace, Loader } from '../utils'
+import { mergeConfigs, getNameSpace, Loader, parseIdKey } from '../utils'
 
 
 const defaultConfigs = {
@@ -25,8 +25,9 @@ export default function(form = {}, resource, configs) {
     throw new Error('namespace is fequired')
   }
   const _configs = mergeConfigs(defaultConfigs, configs)
+  const idKey = parseIdKey(resource.endpoint || key)
   return compose(
-    configs.prefetch !== false ? prefetchResources(resource, _configs) : typeof resource === 'function' ? resource : connectResources(resource),
+    configs.prefetch !== false ? prefetchResources(resource, { ..._configs, idKey }) : typeof resource === 'function' ? resource : connectResources(resource),
     finalForm(form, { key, resource, configs: _configs })
   )
 }
