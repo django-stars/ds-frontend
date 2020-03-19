@@ -1,4 +1,5 @@
 import { parse } from 'path-to-regexp'
+import get from 'lodash/get'
 
 export function mergeConfigs(a, b) {
   return Object.assign({}, a || {}, b || {})
@@ -34,9 +35,9 @@ export function parseIdKey(endpoint) {
     return false
   }
   if(!endpoint.includes(':')) { return }
-  return (parse(endpoint) || [])
+  const conditionQuery = (parse(endpoint) || [])
     .filter(item => typeof item !== 'string')
     .filter(({ modifier }) => modifier === '?')
     .pop()
-    .name
+  return get(conditionQuery, 'name')
 }
