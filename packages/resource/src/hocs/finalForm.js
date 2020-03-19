@@ -43,7 +43,9 @@ export default function withFinalForm({
         const registeredFields = form.getRegisteredFields()
         const idKey = getIdKey(this.props, config)
         const apiData = { ...getData(values, this.props, form, valuesInterceptor, registeredFields), ...(idKey || {}) }
-        const submitAction = get(this.props[key], 'customRequest') || isEmpty(idKey) ? get(this.props[key], 'create') : get(this.props[key], 'update')
+        const submitAction = get(this.props[key], 'customRequest')
+          ? get(this.props[key], 'customRequest')
+          : isEmpty(idKey) ? get(this.props[key], 'create') : get(this.props[key], 'update')
         return Promise.resolve(configs.onSubmit ? configs.onSubmit(apiData, form, this.props) : submitAction(apiData, { forceUpdates: true }))
           .then(data => {
             if(typeof onSubmitSuccess === 'function') {
