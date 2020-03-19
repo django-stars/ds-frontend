@@ -33,6 +33,7 @@ export function parseIdKey(endpoint) {
   if(!endpoint || typeof endpoint !== 'string') {
     return false
   }
+  if(!endpoint.includes(':')) { return }
   return (parse(endpoint) || [])
     .filter(item => typeof item !== 'string')
     .filter(({ modifier }) => modifier === '?')
