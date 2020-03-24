@@ -16,7 +16,7 @@ const ResourceType = PropTypes.shape({
   options: PropTypes.object,
   filters: PropTypes.object,
   errors: PropTypes.object,
-  data: PropTypes.object,
+  data: PropTypes.any,
 })
 
 export default ResourceType
