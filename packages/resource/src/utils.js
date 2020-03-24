@@ -1,5 +1,7 @@
 import { parse } from 'path-to-regexp'
 import get from 'lodash/get'
+import camelCase from 'lodash/camelCase'
+import isString from 'lodash/isString'
 
 export function mergeConfigs(a, b) {
   return Object.assign({}, a || {}, b || {})
@@ -25,7 +27,11 @@ export function getNameSpace(namespace) {
   if(typeof namespace !== 'string') {
     return ''
   }
-  return namespace.split('/').shift()
+  return camelCase(
+    parse(namespace)
+      .filter(isString)
+      .map(item => item.split('/'))
+  )
 }
 
 export function Loader({ children, isLoading }) { return isLoading ? null : children }
@@ -36,7 +42,7 @@ export function parseIdKey(endpoint) {
   }
   if(!endpoint.includes(':')) { return }
   const conditionQuery = (parse(endpoint) || [])
-    .filter(item => typeof item !== 'string')
+    .filter(isString)
     .filter(({ modifier }) => modifier === '?')
     .pop()
   return get(conditionQuery, 'name')
