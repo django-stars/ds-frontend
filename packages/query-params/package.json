@@ -1,0 +1,17 @@
+{
+  "name": "@ds-frontend/query-params",
+  "version": "0.1",
+  "description": "Query string parser including Django and Elastic strategies",
+  "keywords": [
+    "query string",
+    "query params",
+    "elastic"
+  ],
+  "author": "DjangoStars <info@djangostars.com> (https://github.com/django-stars/)",
+  "contributors": [
+    "Yaroslav Shulika <legendar@gmail.com>"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
