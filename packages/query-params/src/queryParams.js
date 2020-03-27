@@ -87,7 +87,8 @@ export default class QueryParams {
       if(this.strategy === STRATEGIES.DEFAULT) {
         let currentValue = get(ret, key)
         if(currentValue !== undefined) {
-          value = [value].concat(currentValue).reverse()
+          currentValue = isArray(currentValue) ? currentValue : [ currentValue ]
+          value = currentValue.concat(value)
         }
       }
 
