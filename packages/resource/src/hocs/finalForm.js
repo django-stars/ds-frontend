@@ -2,7 +2,6 @@ import { Component } from 'react'
 import { Form } from 'react-final-form'
 import { FORM_ERROR } from 'final-form'
 import { parse } from 'path-to-regexp'
-import pick from 'lodash/pick'
 import omit from 'lodash/omit'
 import get from 'lodash/get'
 import isEmpty from 'lodash/isEmpty'
@@ -42,7 +41,7 @@ export default function withFinalForm({
       handleSubmit(values, form) {
         const registeredFields = form.getRegisteredFields()
         const idKey = getIdKey(this.props, config)
-        const apiData = { ...getData(values, this.props, form, valuesInterceptor, registeredFields), ...(idKey || {}) }
+        const apiData = { ...getData(values, this.props, form, valuesInterceptor), ...(idKey || {}) }
         const submitAction = get(this.props[key], 'customRequest')
           ? get(this.props[key], 'customRequest')
           : isEmpty(idKey) ? get(this.props[key], 'create') : get(this.props[key], 'update')
@@ -100,11 +99,11 @@ export default function withFinalForm({
   }
 }
 
-function getData(values, props, form, valuesInterceptor, registeredFields) {
+function getData(values, props, form, valuesInterceptor) {
   if(typeof valuesInterceptor === 'function') {
-    return valuesInterceptor(pick(values, registeredFields), props, form)
+    return valuesInterceptor(values, props, form)
   }
-  return pick(values, registeredFields)
+  return values
 }
 
 function isFormValid(form = {}) {
