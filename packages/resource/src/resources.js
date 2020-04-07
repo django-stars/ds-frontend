@@ -217,12 +217,11 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
   return { ...ownProps, ...mergeProps }
 }
 
-export default function connectResources(resource, context) {
+export default function connectResources(resource) {
   return connect(
     mapStateToProps(resource),
     dispatch => mapDispatchToProps(resource, dispatch),
     mergeProps,
-    { context }
   )
 }
 
@@ -310,7 +309,7 @@ export function resourcesReducer(state = {}, action) {
 }
 
 
-export function customResource(customFetch, context) {
+export function customResource(customFetch) {
   return function customResourceFetch(resource) {
     if(Array.isArray(resource)) {
       throw new Error('custom resource config can not be an array')
@@ -337,7 +336,6 @@ export function customResource(customFetch, context) {
         },
       }),
       mergeProps,
-      { context }
     )
     customeResourceConnectHOC.namespace = namespace
     customeResourceConnectHOC.endpoint = endpoint
