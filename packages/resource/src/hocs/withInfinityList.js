@@ -46,7 +46,7 @@ export default function withInfinityList(resources, configs) {
     resource.queries = ['offset', 'limit']
   }
   return compose(
-    typeof resource === 'function' ? resource : connectResources(resource, get(configs, 'context')),
+    typeof resource === 'function' ? resource : connectResources(resource),
     withList(getNameSpace(key), resource, mergeConfigs(defaultConfigs, configs)),
   )
 }

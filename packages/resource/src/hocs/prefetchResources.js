@@ -23,7 +23,7 @@ export default function prefetchResources(resources, configs) {
   const customResources = _resources.filter(item => typeof item === 'function')
   return compose(
     ...customResources,
-    connectResources(resourcesList, get(configs, 'context')),
+    connectResources(resourcesList),
     prefetch(_resources, mergeConfigs(defaultConfigs, configs))
   )
 }
