@@ -2,8 +2,9 @@
 
 ## useResource
 Hook  that will create resource. The difference from connectResources is that useResource will only accept single Resource and does not accepts custom async action
-`useResource(resource)`
+`useResource(resource, context)`
 - `resource: String|Object`  [required] => resource config
+- `context: ReactContext` => ReactContext 
 *Returns all props for resource:*
 
 ```
@@ -51,9 +52,10 @@ function MyReactComponent () {
 
 ## useClear
 Hook that will return resource clear action
-`useClear(namespace)`
+`useClear(namespace, context)`
 
 - `namespace: String`  [required] => resource namespace
+- `context: ReactContext` => ReactContext 
 
 #### Example
 ```
@@ -68,28 +70,29 @@ function MyReactComponent () {
 
 ## useSetData
 Hook that will return resource setData action
-`useSetData(namespace)`
+`useSetData(namespace, context)`
  Same api as useClear
 ## useSetFilters
 Hook that will return resource setFilters action
-`useSetFilters(namespace)`
+`useSetFilters(namespace, context)`
  Same api as useClear
 ## useSetErrors
 Hook that will return resource setErrors action
-`useSetErrors(namespace)`
+`useSetErrors(namespace, context)`
  Same api as useClear
 ## useSetLoading
 Hook that will return resource setLoading action
-`useSetLoading(namespace)`
+`useSetLoading(namespace, context)`
  Same api as useClear
 
 
 ## useRequest
 Hook for async resource action
-`useRequest(resource, type)`
+`useRequest(resource, type, context)`
 
 - `resource: String|Object`  [required] => resource config
 - `type: String`  [required]  [default: GET] => HTTP request type ("GET", "POST", "DELETE" ...)
+- `context: ReactContext` => ReactContext 
 
 #### Example
 ```
@@ -104,13 +107,14 @@ function MyReactComponent () {
 
 ## useCustomRequest
 Hook for async  action
-`useCustomRequest(asyncFunction, resource)`
+`useCustomRequest(asyncFunction, resource, context)`
 
 - `asyncFunction: Func`  [required] => function that should return Promise. Accepts 3 arguments: 
 -- API: api instance from asyncMiddleware 
 -- payload: action payload 
 -- meta: action extra configuration
 - `resource: String|Object`  [required] => resource config
+- `context: ReactContext` => ReactContext 
 
 #### Example
 ```

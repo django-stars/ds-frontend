@@ -1,6 +1,11 @@
 import { useMemo, useCallback } from 'react'
 import { createSelector } from 'reselect'
-import { useSelector, useDispatch } from 'react-redux'
+import {
+  createDispatchHook,
+  createSelectorHook,
+  useSelector,
+  useDispatch,
+} from 'react-redux'
 import get from 'lodash/get'
 import { makeResourceActions } from '../resources'
 import { getNameSpace } from '../utils'
@@ -14,12 +19,14 @@ function makeResourceSelector(config) {
 }
 
 
-export default function useResource(config) {
+export default function useResource(config, context) {
   if(Array.isArray(config)) {
     throw new Error('useResource hook can accept only one resource config')
   }
-  const dispatch = useDispatch()
-  const resource = useSelector(makeResourceSelector(config))
+  const _useSelector = context ? createSelectorHook(context) : useSelector
+  const _useDispatch = context ? createDispatchHook(context) : useDispatch
+  const dispatch = _useDispatch()
+  const resource = _useSelector(makeResourceSelector(config))
   const actions = useMemo(() => makeResourceActions(config, dispatch), [config, dispatch])
   return useMemo(() => ({ ...resource, ...actions }), [resource, config])
 }

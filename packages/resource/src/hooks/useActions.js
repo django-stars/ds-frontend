@@ -1,33 +1,33 @@
 import { useMemo } from 'react'
-import { useDispatch } from 'react-redux'
+import { createDispatchHook, useDispatch } from 'react-redux'
 import { makeSimpleAction, setData, setFilters, setErrors, setLoading } from '../resources'
 
 
-export function useSetData(namespace) {
+export function useSetData(namespace, context) {
   if(typeof namespace !== 'string') {
     throw new Error('namespace should be a String')
   }
-  return makeSimpleAction({ namespace }, setData, useDispatch())
+  return makeSimpleAction({ namespace }, setData, context ? createDispatchHook(context)() : useDispatch())
 }
 
 
-export function useSetFilters(namespace) {
+export function useSetFilters(namespace, context) {
   if(typeof namespace !== 'string') {
     throw new Error('namespace should be a String')
   }
-  return makeSimpleAction({ namespace }, setFilters, useDispatch())
+  return makeSimpleAction({ namespace }, setFilters, context ? createDispatchHook(context)() : useDispatch())
 }
 
-export function useSetErrors(namespace) {
+export function useSetErrors(namespace, context) {
   if(typeof namespace !== 'string') {
     throw new Error('namespace should be a String')
   }
-  return makeSimpleAction({ namespace }, setErrors, useDispatch())
+  return makeSimpleAction({ namespace }, setErrors, context ? createDispatchHook(context)() : useDispatch())
 }
 
-export function useSetLoading(namespace) {
+export function useSetLoading(namespace, context) {
   if(typeof namespace !== 'string') {
     throw new Error('namespace should be a String')
   }
-  return makeSimpleAction({ namespace }, setLoading, useDispatch())
+  return makeSimpleAction({ namespace }, setLoading, context ? createDispatchHook(context)() : useDispatch())
 }
