@@ -110,8 +110,8 @@ function withList(key, resource, configs) {
         if(!request) { return }
         this.request = request({
           ...get(this.props[key], 'filters', {}),
-          ...search,
           offset: 0,
+          ...search,
         }, { reducer: 'replace', ...(apiParams || {}) })
         return this.request
       }
