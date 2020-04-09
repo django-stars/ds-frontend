@@ -6,8 +6,7 @@ import get from 'lodash/get'
 import has from 'lodash/has'
 import pick from 'lodash/pick'
 import noop from 'lodash/noop'
-import debounce from 'lodash/debounce'
-import { Loader, mergeConfigs, makePromiseSubscription, getNameSpace } from '../utils'
+import { Loader, mergeConfigs, makePromiseSubscription, getNameSpace , promiseDebounce} from '../utils'
 
 
 const defaultConfigs = {
@@ -61,7 +60,7 @@ function withList(key, resource, configs) {
         this.loadNext = this.loadNext.bind(this)
         this.refresh = this.refresh.bind(this)
         this.getapiDatafromProps = this.getapiDatafromProps.bind(this)
-        this.onSearch = debounce(this.handleSearch.bind(this), 300)
+        this.onSearch = promiseDebounce(this.handleSearch.bind(this), 300)
 
         const initialLoading = configs.refresh || (!has(get(props, `[${key}].data`)) && !has(get(props, `[${key}].errors`)))
         this.state = {
