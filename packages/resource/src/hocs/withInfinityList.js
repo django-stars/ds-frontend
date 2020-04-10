@@ -76,9 +76,9 @@ function withList(key, resource, configs) {
         if(!request) { return }
 
         this.request = request({
+          offset: 0,
           ...get(configs, 'defaultParams', {}),
           ...this.getapiDatafromProps(),
-          offset: 0,
         }, { reducer: 'replace', forceUpdates: true })
         this.subscription = makePromiseSubscription([this.request])
         this.subscription
