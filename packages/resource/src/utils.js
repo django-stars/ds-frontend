@@ -42,7 +42,7 @@ export function parseIdKey(endpoint) {
   }
   if(!endpoint.includes(':')) { return }
   const conditionQuery = (parse(endpoint) || [])
-    .filter(isString)
+    .filter(value => !isString(value))
     .filter(({ modifier }) => modifier === '?')
     .pop()
   return get(conditionQuery, 'name')
