@@ -1,6 +1,6 @@
 {
   "name": "@ds-frontend/resource",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha",
   "description": "redux HOC for sending HTTP requests",
   "keywords": [
     "react",
