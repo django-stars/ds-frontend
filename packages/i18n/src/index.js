@@ -205,8 +205,6 @@ export function npgettext(id = '', singular = '', plural = '', count) {
   )
 }
 
-export function gettextNoop(message) { return message }
-
 export function interpolate(message, obj, named) {
   if(named) {
     return message.replace(/%\(\w+\)s/g, function(match) { return String(obj[match.slice(2, -2)]) })

@@ -67,15 +67,6 @@ function Title(props){
 }
 ```
 
-# gettextNoop(message)
-Returns message.
-```
-import { gettextNoop } from 'djangostars/i18n'
-function Title(props){
-    return <h1>{ gettextNoop("Hello") }</h1>
-}
-```
-
 # interpolate(message, config, named)
 The interpolate function supports dynamically populating a format string.
 
