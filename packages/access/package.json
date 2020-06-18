@@ -1,0 +1,21 @@
+{
+  "name": "@ds-frontend/access",
+  "version": "2.0.0-alpha",
+  "description": "React component for condition rendering",
+  "keywords": [
+    "react",
+    "redux",
+    "access"
+  ],
+  "author": "DjangoStars <info@djangostars.com> (https://github.com/django-stars/)",
+  "contributors": [
+    "Nikita Mazur <mazur.nike@gmail.com>"
+  ],
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-redux": "^7.2.0"
+  }
+}
