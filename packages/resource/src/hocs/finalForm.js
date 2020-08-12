@@ -57,7 +57,7 @@ export default function withFinalForm({
               if(!registeredFields.includes(key)) { eKey = '_error' }
               return {
                 ...res,
-                [eKey]: Array.isArray(value) ? value[0] : value,
+                [eKey]: value,
               }
             }, {})
             if(typeof onSubmitFailed === 'function') {
