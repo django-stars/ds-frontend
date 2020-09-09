@@ -102,7 +102,7 @@ export default class QueryParams {
     return Object.keys(params).reduce((ret, key) => {
       let value = params[key]
 
-      if((!value && value !== false) || (isArray(value) || isPlainObject(value)) && isEmpty(value) || isEmpty(String(value))) {
+      if((['', undefined, null].includes(value)) || (isArray(value) || isPlainObject(value)) && isEmpty(value) || isEmpty(String(value))) {
         return ret
       }
 
