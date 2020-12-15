@@ -35,10 +35,14 @@ export function prefetch(resources, configs) {
       constructor(props) {
         super(props)
         this.getResources = this.getResources.bind(this)
+        this.ensureData = this.ensureData.bind(this)
         const initialLoading = configs.refresh || this.getResources()
           .findIndex(({ resource }) => !has(resource, 'data')) !== -1
         this.state = {
           initialLoading: configs.idKey ? !!props[configs.idKey] : initialLoading,
+        }
+        if(typeof window === 'undefined') {
+          this.ensureData()
         }
       }
 
@@ -56,7 +60,7 @@ export function prefetch(resources, configs) {
         }).filter(Boolean)
       }
 
-      componentDidMount() {
+      ensureData() {
         if(!this.state.initialLoading) { return }
         this.fetchList = this.getResources().map(({ resource, config }) => {
           const urlConfigs = (parse(config.endpoint || '') || [])
@@ -73,6 +77,10 @@ export function prefetch(resources, configs) {
         this.subscription
           .then(() => this.setState({ initialLoading: false }))
           .catch(noop)
+      }
+
+      componentDidMount() {
+        this.ensureData()
       }
 
       componentWillUnmount() {
