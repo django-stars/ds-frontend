@@ -3,7 +3,7 @@ import get from 'lodash/get'
 import has from 'lodash/has'
 import omit from 'lodash/omit'
 import { buildUrl, mergeConfigs } from './utils'
-import 'isomorphic-fetch'
+import fetch, { Headers, Request } from 'cross-fetch'
 
 
 export default class API {
