@@ -38,7 +38,7 @@ export function buildUrl(baseURL, endpoint, params, paramsSerializer = QS.buildQ
 
 
 export function hasFile(obj) {
-  return deepValues(obj).some((v) => v instanceof File)
+  return typeof File !== 'undefined' && deepValues(obj).some((v) => v instanceof File)
 }
 
 function deepValues(obj) {
