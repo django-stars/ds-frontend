@@ -36,12 +36,13 @@ export function prefetch(resources, configs) {
         super(props)
         this.getResources = this.getResources.bind(this)
         this.ensureData = this.ensureData.bind(this)
-        const initialLoading = configs.refresh || this.getResources()
-          .findIndex(({ resource }) => !has(resource, 'data')) !== -1
+        const data = this.getResources()
+        .findIndex(({ resource }) => !has(resource, 'data')) === -1
+        const initialLoading = configs.refresh || !data
         this.state = {
           initialLoading: configs.idKey ? !!props[configs.idKey] : initialLoading,
         }
-        if(typeof window === 'undefined') {
+        if(typeof window === 'undefined' && !data) {
           this.ensureData()
         }
       }
