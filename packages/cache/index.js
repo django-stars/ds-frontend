@@ -6,5 +6,5 @@ export {
   persistReducer,
   cacheMiddleware,
   reset,
-  CheckCache
+  CheckCache,
 }
