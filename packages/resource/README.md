@@ -95,7 +95,6 @@ resource = {
  namespace: 'internalResourceName',
  endpoint: '/some/endpoint/with/:placeholders',
  forceUpdates: true|false (default false),
- withNavigation: true|false (default false),
  reducer: 'object|paginationList|none|replace|custom function' (default 'object'),
  queries: [],
 }
@@ -257,31 +256,4 @@ This package will also provide a standard list of React Hight Order Components:
  - [withFinalForm](https://github.com/django-stars/ds-frontend-resource/blob/master/src/hocs/WithFinalForm.md)
  - navigationToProps
 
-
-# Hook
-
-## useResource
-Hook that will create resource in Redux and return same props as connectResources
-Accepts same configuration as connectResources
-
-``` 
-import { useResource } from '@ds-frontend/resource'
-
-function MyReactComponent () {
-  const { data, isLoading,  errors, fetch } = useResource('users/me')
-  useEffect(()=>{
-    const request = fetch()
-    return request.cancel
-  }, [])
-  if(isLoading) {
-    return 'Loading...'
-  }
-  if(errors){
-    return 'Oooops something went wrong please contact local police office'
-  }
-  return <UserElement user={data}/>
-
-}
-``` 
-
- 
+# [HOOKS](https://github.com/django-stars/ds-frontend-resource/blob/master/packages/resource/src/hooks/Hooks.md)
