@@ -11,6 +11,6 @@
     "Alexander Gulchenko <aleksandr.gulchenko@gmail.com>"
   ],
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   }
 }
